@@ -1,5 +1,11 @@
-import logo from './logo.svg';
+import logo from './../logo.svg';
 import './App.css';
+import config from './../config.js';
+
+
+let apiKey = config;
+
+
 
 function App() {
   return (
