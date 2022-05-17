@@ -2,12 +2,16 @@ import React from 'react'
 
 const Photo = (props) => {
 
+  let serverId = props.serverId;
+  let id = props.photoId;
+  let secret = props.secret;
+  let alt = props.alt;
 
 return (
-<div class="photo-container">
+<div className="photo-container">
         <ul>
           <li>
-            <img src="https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg" alt="" />
+            <img src={`https://live.staticflickr.com/${serverId}/${id}_${secret}_w.jpg`} alt={`${alt}`} />
           </li>
          </ul>
 </div>
