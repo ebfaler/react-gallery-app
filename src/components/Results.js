@@ -15,7 +15,6 @@ let photos;
     serverId = {photo.server}
     photoId = {photo.id}
     secret = {photo.secret}
-    sizeSuffix = {photo.sizeSuffix}
     alt = {photo.title}     
     /> 
    );
