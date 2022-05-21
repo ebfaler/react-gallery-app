@@ -5,14 +5,15 @@ import apiKey from '../config.js';
 import Search from './Search';
 import Nav from './Nav';
 import Results from './Results';
-// import NotFound from './NotFound';
+import NotFound from './NotFound';
 
 //React Router
 
 import {
   BrowserRouter,
   Route,
-  // Switch
+  Switch,
+  withRouter
 } from 'react-router-dom';
 
 
@@ -29,6 +30,17 @@ export default class App extends Component {
   componentDidMount() {
     this.performSearch();
   }
+
+
+  componentDidUpdate(prevProps) {
+    console.log("ROUTE CHANGED " +this.props.location);
+    if (this.props.location !== prevProps.location) {
+      console.log("ROUTE CHANGED " +this.props.location);
+      this.performSearch(this.props.location);
+    }
+  }
+
+  
 
   performSearch = (tags = 'sunsets') => {
 
@@ -62,12 +74,20 @@ export default class App extends Component {
             {
               (this.state.loading)
                 ? <p>Loading...</p>
-                : <Route exact path="/" render={() => <Results data={this.state.photos} />} />
+                :
+                <Switch>
+                 <Route exact path="/" render={() => <Results data={this.state.photos} />} />
+                 <Route exact path="/cats" render={() => <Results data={this.state.photos} />} />
+                 <Route exact path="/dogs" render={() => <Results data={this.state.photos} />} />
+                 <Route exact path="/computers" render={() => <Results data={this.state.photos} />} />
+                 {/* <Route exact path="/search/:query" render={() => <Results data={this.state.photos} />} /> */}
 
+                 <Route component={NotFound}/>
+                </Switch>
 
             }
 
-
+          
           </div>
 
         </div>
@@ -78,12 +98,3 @@ export default class App extends Component {
 }
 
 
-{/* <Switch> */ }
-
-
-{/* <Route path="/cats" render={ () => <Results data={this.state.photos} />} />
-                 <Route path="/dogs" render={ () => <Results data={this.state.photos} />} />
-                 <Route path="/computers" render={ () => <Results data={this.state.photos} />} />
-                 <Route component={NotFound}/> */}
-
-{/* </Switch> */ }

@@ -2,6 +2,7 @@ import React from 'react';
 import Photo from './Photo'; 
 import NotFound from './NotFound';
 
+
 const Results = (props) => {
 
 
@@ -24,6 +25,8 @@ let photos;
 
 
 return (
+
+
 
 <div className="photo-container">
         <h2>Results</h2>
