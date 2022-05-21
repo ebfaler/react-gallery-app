@@ -23,7 +23,8 @@ export default class App extends Component {
     super();
     this.state = {
       photos: [],
-      loading: true
+      loading: true,
+      
     }
   }
 
@@ -48,7 +49,7 @@ export default class App extends Component {
       .then(response => response.json())
       .then(responseData => {
         console.log(responseData);
-        this.setState({ photos: responseData.photos.photo, loading: false });
+        this.setState({ photos: responseData.photos.photo, loading: false});
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);

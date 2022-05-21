@@ -16,7 +16,10 @@ let photos;
     serverId = {photo.server}
     photoId = {photo.id}
     secret = {photo.secret}
-    alt = {photo.title}     
+    alt = {photo.title} 
+    //When you use map or any other looping function you need to assign a unique key 
+    //to each element you generate in react.
+    key = {photo.id.toString()}    
     /> 
    );
   } else {
