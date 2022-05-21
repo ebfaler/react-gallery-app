@@ -3,6 +3,7 @@ import Photo from './Photo';
 import NotFound from './NotFound';
 
 
+
 const Results = (props) => {
 
 
@@ -41,13 +42,6 @@ return (
 
 );
 
-
-
 }
-
-
-
-
-
 
 export default Results;

@@ -5,19 +5,23 @@ import apiKey from '../config.js';
 import Search from './Search';
 import Nav from './Nav';
 import Results from './Results';
-import NotFound from './NotFound';
+// import NotFound from './NotFound';
+import Error from './Error';
 
 //React Router
 
 import {
-  BrowserRouter,
+
   Route,
   Switch,
   withRouter
 } from 'react-router-dom';
 
 
-export default class App extends Component {
+
+
+class App extends Component {
+
 
   constructor() {
     super();
@@ -29,21 +33,24 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.performSearch();
+    const search = this.props.location.pathname.substring(1);
+    this.performSearch(search);
   }
 
 
   componentDidUpdate(prevProps) {
-    console.log("ROUTE CHANGED " +this.props.location);
-    if (this.props.location !== prevProps.location) {
-      console.log("ROUTE CHANGED " +this.props.location);
-      this.performSearch(this.props.location);
+    if (this.props.location.pathname.substring(1) !== prevProps.location.pathname.substring(1)) {
+      this.performSearch(this.props.location.pathname.substring(1));
     }
   }
 
   
 
-  performSearch = (tags = 'sunsets') => {
+  performSearch = (tags) => {
+    if(tags === ''){
+      tags = 'sunsets';
+    }
+    console.log(tags);
 
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
@@ -59,11 +66,9 @@ export default class App extends Component {
 
 
   render() {
-    // console.log(this.state.photos);
-    // : <Results data={this.state.photos} />
 
     return (
-      <BrowserRouter>
+    
         <div>
 
           <div>
@@ -78,12 +83,12 @@ export default class App extends Component {
                 :
                 <Switch>
                  <Route exact path="/" render={() => <Results data={this.state.photos} />} />
-                 <Route exact path="/cats" render={() => <Results data={this.state.photos} />} />
-                 <Route exact path="/dogs" render={() => <Results data={this.state.photos} />} />
-                 <Route exact path="/computers" render={() => <Results data={this.state.photos} />} />
-                 {/* <Route exact path="/search/:query" render={() => <Results data={this.state.photos} />} /> */}
+                 <Route exact path="/:query" render={() => <Results data={this.state.photos} />} />
+                 {/* <Route exact path="/dogs" render={() => <Results data={this.state.photos} />} />
+                 <Route exact path="/computers" render={() => <Results data={this.state.photos} />} /> */}
+                 {/* <Route exact path="/:photos" render={() => <Results data={this.state.photos} />} /> */}
 
-                 <Route component={NotFound}/>
+                 <Route component={Error}/>
                 </Switch>
 
             }
@@ -93,9 +98,9 @@ export default class App extends Component {
 
         </div>
 
-      </BrowserRouter>
     );
   }
 }
 
 
+export default withRouter(App);
