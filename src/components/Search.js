@@ -1,6 +1,7 @@
 import React, {Component} from 'react';   
+import { withRouter } from 'react-router-dom';
 
-export default class Search extends Component {
+ class Search extends Component {
   
     state = {
       searchText: ''
@@ -13,7 +14,12 @@ export default class Search extends Component {
     handleSubmit = e => {
       e.preventDefault();
       this.props.onSearch(this.tags.value);
-      e.currentTarget.reset();
+      // console.log(this.tags.value);
+
+      let path = `/${this.tags.value}`;
+      console.log(path);
+      this.props.history.push(path);
+
     }
     
     render() {  
@@ -23,6 +29,7 @@ export default class Search extends Component {
           <input type="search" 
                  onChange={this.onSearchChange}
                  name="search" 
+                 //input is the callback argument
                  ref ={(input) => this.tags = input}
                  placeholder="Search..." />
           <button type="submit" id="submit" className="search-button"><i className="material-icons icn-search">search</i></button>
@@ -32,3 +39,4 @@ export default class Search extends Component {
   }
 
 
+  export default withRouter(Search);

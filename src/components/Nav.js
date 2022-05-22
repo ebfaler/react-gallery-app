@@ -1,9 +1,9 @@
 import React from 'react';
-import {NavLink
+import {NavLink,
+ 
 }  from 'react-router-dom';
 
-
-const Nav = (props) => 
+const Nav = () => 
  {
   
     
@@ -18,10 +18,8 @@ const Nav = (props) =>
 
       </nav>
 
-        )
+        )   
     
-    
-}
+};
 
-
-export default Nav
+export default Nav;
