@@ -5,11 +5,9 @@ import apiKey from '../config.js';
 import Search from './Search';
 import Nav from './Nav';
 import Results from './Results';
-// import NotFound from './NotFound';
 import Error from './Error';
 
 //React Router
-
 import {
 
   Route,
@@ -28,7 +26,7 @@ class App extends Component {
     this.state = {
       photos: [],
       loading: true,
-      
+
     }
   }
 
@@ -44,10 +42,10 @@ class App extends Component {
     }
   }
 
-  
+
 
   performSearch = (tags) => {
-    if(tags === ''){
+    if (tags === '') {
       tags = 'sunsets';
     }
     console.log("search: " + tags);
@@ -56,7 +54,7 @@ class App extends Component {
       .then(response => response.json())
       .then(responseData => {
         console.log(responseData);
-        this.setState({ photos: responseData.photos.photo, loading: false});
+        this.setState({ photos: responseData.photos.photo, loading: false });
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
@@ -68,35 +66,35 @@ class App extends Component {
   render() {
 
     return (
-    
+
+      <div>
+
         <div>
+          <Search onSearch={this.performSearch} />
+          <Nav navSearch={this.performSearch} />
+        </div>
 
-          <div>
-            <Search onSearch={this.performSearch} />
-            <Nav navSearch={this.performSearch} />
-          </div>
-
-          <div>
-            {
-              (this.state.loading)
-                ? <p>Loading...</p>
-                :
-                <Switch>
-                 <Route exact path="/" render={() => <Results data={this.state.photos} />} />
-                 <Route exact path="/:query" render={() => <Results data={this.state.photos} />} />
-                 {/* <Route exact path="/dogs" render={() => <Results data={this.state.photos} />} />
+        <div>
+          {
+            (this.state.loading)
+              ? <p>Loading...</p>
+              :
+              <Switch>
+                <Route exact path="/" render={() => <Results data={this.state.photos} />} />
+                <Route exact path="/:query" render={() => <Results data={this.state.photos} />} />
+                {/* <Route exact path="/dogs" render={() => <Results data={this.state.photos} />} />
                  <Route exact path="/computers" render={() => <Results data={this.state.photos} />} /> */}
-                 {/* <Route exact path="/:photos" render={() => <Results data={this.state.photos} />} /> */}
+                {/* <Route exact path="/:photos" render={() => <Results data={this.state.photos} />} /> */}
 
-                 <Route component={Error}/>
-                </Switch>
+                <Route component={Error} />
+              </Switch>
 
-            }
+          }
 
-          
-          </div>
 
         </div>
+
+      </div>
 
     );
   }

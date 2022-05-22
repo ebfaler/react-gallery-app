@@ -2,7 +2,7 @@ import React from 'react';
           
 const Error = (props) => {      
 return (  
-    //   <!-- Not Found -->
+    //   <!-- Error -->
       <li className="not-found">
         <h3>404 Error</h3>
         <p>Oh snap, this page was not found!</p>
