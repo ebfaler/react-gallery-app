@@ -1,3 +1,20 @@
+# Project Notes
+
+For this gallery project I have used React version 17.0.2 and React Router DOM version 5.3.0. I have:
+
+- Used JavaScript and JSX to build out the gallery components in a modular fashion.
+- Used React Router to set up routes for three default topic pages and a search page.
+- Used Fetch API to fetch data from the Flickr API and used it to display images in the app.
+- Added logic to handle the search and various requirements of the project
+
+# API Key
+
+The config.js file should be in the src folder ie src/config.js and should look like this:
+
+const apiKey = 'YOUR API KEY';
+export default apiKey;
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
