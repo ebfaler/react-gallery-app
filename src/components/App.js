@@ -52,11 +52,9 @@ class App extends Component {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
-        console.log(responseData);
         this.setState({ photos: responseData.photos.photo, loading: false });
       })
       .catch(error => {
-        console.log('Error fetching and parsing data', error);
       });
 
   }
