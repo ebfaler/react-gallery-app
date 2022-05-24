@@ -26,7 +26,6 @@ class App extends Component {
     this.state = {
       photos: [],
       loading: true,
-
     }
   }
 
@@ -48,7 +47,7 @@ class App extends Component {
     if (tags === '') {
       tags = 'sunsets';
     }
-    console.log("search: " + tags);
+    this.setState({loading: true});
 
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
@@ -82,10 +81,6 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" render={() => <Results data={this.state.photos} />} />
                 <Route exact path="/:query" render={() => <Results data={this.state.photos} />} />
-                {/* <Route exact path="/dogs" render={() => <Results data={this.state.photos} />} />
-                 <Route exact path="/computers" render={() => <Results data={this.state.photos} />} /> */}
-                {/* <Route exact path="/:photos" render={() => <Results data={this.state.photos} />} /> */}
-
                 <Route component={Error} />
               </Switch>
 

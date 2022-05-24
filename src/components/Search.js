@@ -3,14 +3,6 @@ import { withRouter } from 'react-router-dom';
 
 class Search extends Component {
 
-  state = {
-    searchText: ''
-  }
-
-  onSearchChange = e => {
-    this.setState({ searchText: e.target.value });
-  }
-
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSearch(this.tags.value);
@@ -23,9 +15,7 @@ class Search extends Component {
   render() {
     return (
       <form className="search-form" onSubmit={this.handleSubmit} >
-
         <input type="search"
-          onChange={this.onSearchChange}
           name="search"
           //input is the callback argument
           ref={(input) => this.tags = input}

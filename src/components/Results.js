@@ -13,6 +13,7 @@ const Results = (props) => {
 
   let photos;
   if (results && results.length > 0) {
+    
     photos = results.map(photo =>
       <Photo
         serverId={photo.server}
